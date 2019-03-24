@@ -12,5 +12,13 @@ const makeRequest = async (url, params) => {
   const response = await axios.get(url, { params });
   return getWeatherAtNoon(response);
 }
+
+const byCoords = url => ({ latitude: lat, longitude: lon }) => {
+  const params = { lat, lon, APPID };
+  return makeRequest(url, params);
   }
+
+const byCity = url => city => {
+  const params = { city, APPID };
+  return makeRequest(url, params);
 }
