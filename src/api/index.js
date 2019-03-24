@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getWeatherAtNoon } from '../utils';
 
 export const fetchByCoords = async ({ latitude: lat, longitude: lon }) => {  
   try {
@@ -9,8 +10,9 @@ export const fetchByCoords = async ({ latitude: lat, longitude: lon }) => {
       params: { lat, lon, APPID }
     });
 
-    return response;
-  } catch (error) {
-    console.log(error)
+const makeRequest = async (url, params) => {
+  const response = await axios.get(url, { params });
+  return getWeatherAtNoon(response);
+}
   }
 }
