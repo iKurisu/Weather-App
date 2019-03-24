@@ -8,3 +8,5 @@ export const getForecastAtNoon = data => {
 
 export const toCelsius = t => Math.floor(t - 273.15);
 export const toFahrenheit = t => toCelsius(t) * 9/5 + 32;
+
+export const weekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
