@@ -1,14 +1,19 @@
 <template>
-  <div>
-    {{ message }}
+  <div class="main">
+
+    <TheForecast />
   </div>
 </template>
 
 <script>
 import store from './store';
+import TheForecast from './components/TheForecast';
 
 export default {
   name: "App",
+  components: {
+    TheForecast
+  },
   store,
   created() {
     if ("geolocation" in navigator) {
