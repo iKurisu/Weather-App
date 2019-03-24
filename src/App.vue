@@ -22,8 +22,12 @@ export default {
       })
     }
   },
-  computed: {
-    message: () => store.state.location ? 'We know were you live...' : 'Please activate location'
-  }
 }
 </script>
+
+<style lang="scss">
+.main {
+  background: #4b9895;
+  height: 100vh;
+}
+</style>
