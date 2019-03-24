@@ -2,9 +2,7 @@
   <div class="forecast-container bottom">
     <div class="forecast">
       <div class="forecast-day" v-for="day in forecast" :key="day.dt">
-        <p>{{ getDay(day) }}</p>
-        <p>{{ day.weather[0].main }}</p>
-        <p>{{ toCelsius(day.main.temp_max) }}</p>
+        <img :src="getIcon(day)" />
       </div>
     </div>
   </div>
@@ -26,6 +24,9 @@ export default {
     },
     getDay(day) {
       return weekdays[new Date(day.dt_txt).getDay() - 1];
+    },
+    getIcon(day) {
+      return icon[day.weather[0].main];
     }
   }
 }
