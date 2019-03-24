@@ -1,27 +1,34 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { fetchByCoords } from '../api';
+import { fetchForecastByCoords, fetchWeatherByCoords } from '../api';
+import { getForecastAtNoon } from '../utils';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     location: null,
-    forecast: []
+    weather: null,
+    forecasts: []
   },
   mutations: {
     setLocation(state, location) {
       state.location = location;
     },
-    setForecast(state, forecast) {
-      state.forecast = forecast
+    setWeather(state, weather) {
+      state.weather = weather;
+    },
+    setForecasts(state, forecasts) {
+      state.forecasts = forecasts
     }
   },
   actions: {
     async setData({ commit }, location) {
-      const data = await fetchByCoords(location.coords);
       commit('setLocation', location);
-      commit('setForecast', data.data.list)
+      const weather = await fetchWeatherByCoords(location.coords);
+      const forecasts = await fetchForecastByCoords(location.coords);
+      commit('setForecasts', getForecastAtNoon(forecasts));
+      commit('setWeather', weather);
     }
   }
 })
