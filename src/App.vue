@@ -1,14 +1,19 @@
 <template>
-  <div>
-    {{ message }}
+  <div class="main">
+
+    <TheForecast />
   </div>
 </template>
 
 <script>
 import store from './store';
+import TheForecast from './components/TheForecast';
 
 export default {
   name: "App",
+  components: {
+    TheForecast
+  },
   store,
   created() {
     if ("geolocation" in navigator) {
@@ -17,8 +22,12 @@ export default {
       })
     }
   },
-  computed: {
-    message: () => store.state.location ? 'We know were you live...' : 'Please activate location'
-  }
 }
 </script>
+
+<style lang="scss">
+.main {
+  background: #4b9895;
+  height: 100vh;
+}
+</style>
