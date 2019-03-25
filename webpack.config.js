@@ -8,7 +8,8 @@ module.exports = {
   entry: "./src/main.js",
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    host: '0.0.0.0'
   },
   plugins: [
     new CleanWebpackPlugin(),
