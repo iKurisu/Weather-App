@@ -64,8 +64,6 @@ export default {
 }
 
 .forecast-day p {
-  font-family: 'Poppins';
-  letter-spacing: 0.7px;
   margin: 3px 0;
 }
 
