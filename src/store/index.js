@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     location: null,
     weather: null,
-    forecasts: []
+    forecasts: [],
+    places: []
   },
   mutations: {
     setLocation(state, location) {
