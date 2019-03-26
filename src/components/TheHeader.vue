@@ -19,6 +19,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { getCountry } from '../utils/country';
 import add from '../assets/icons/add.svg';
 import hamburger from '../assets/icons/hamburger.svg';
 
