@@ -1,4 +1,6 @@
 <template>
+<div class="-full-width -top">
+  <div class="header">
     <div class="header-icon">
       <img :src="add" />
     </div>
@@ -11,6 +13,8 @@
     <div class="header-icon">
       <img :src="hamburger" />
     </div>
+  </div>
+</div>
 </template>
 
 <script>
