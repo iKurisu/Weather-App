@@ -1,6 +1,9 @@
 <template>
   <div class="header top">
-    <p>{{ upperCase(city) }} <span>{{ upperCase(countryName()) }}</span></p>
+    <p v-if="city">
+      {{ upperCase(city) }} 
+      <span>{{ upperCase(countryName()) }}</span>
+    </p>
   </div>
 </template>
 
@@ -12,8 +15,8 @@ export default {
   name: "TheHeader",
   computed: {
     ...mapState({
-      city: ({ weather }) => weather.data.name,
-      countryCode: ({ weather}) => weather.data.sys.country
+      city: ({ weather }) => weather && weather.data.name,
+      countryCode: ({ weather}) => weather && weather.data.sys.country
     })
   },
   methods: {
