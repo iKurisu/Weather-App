@@ -1,10 +1,14 @@
 <template>
 <div class="-full-width -top">
   <div class="header">
-    <div class="header-icon">
+    <div class="header-icon" @click="toggleForm">
       <img :src="add" />
     </div>
-    <div class="header-location" @click="toggleList">
+    <div 
+      class="header-location" 
+      @click="toggleList"
+      v-if="!formIsActive"
+    >
       <p v-if="city">
         {{ upperCase(city) }}
         <span>{{ upperCase(countryName()) }}</span>
@@ -17,6 +21,9 @@
         </li>
       </ul>
     </div>
+    <form v-if="formIsActive" @submit="submitForm">
+      <input type="text" v-model="formValue" placeholder="City, Country Code"/>
+    </form>
     <div class="header-icon">
       <img :src="hamburger" />
     </div>
@@ -36,7 +43,9 @@ export default {
     return {
       add,
       hamburger,
-      listIsActive: false
+      formIsActive: false,
+      listIsActive: false,
+      formValue: ''
     }
   },
   computed: {
@@ -53,8 +62,15 @@ export default {
     upperCase(str) {
       return str.toUpperCase();
     },
+    toggleForm() {
+      this.formIsActive = !this.formIsActive;
+      this.formValue = '';
+    },
     toggleList() {
       this.listIsActive = !this.listIsActive;
+    },
+    submitForm(e) {
+      e.preventDefault();
     }
   }
 }
@@ -85,6 +101,10 @@ export default {
 
 .header p span {
   opacity: .75;
+}
+
+.header input {
+  max-width: 19vh;
 }
 
 .-top {
