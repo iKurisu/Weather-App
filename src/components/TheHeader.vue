@@ -1,18 +1,30 @@
 <template>
-  <div class="header top">
+    <div class="header-icon">
+      <img :src="add" />
+    </div>
     <p v-if="city">
       {{ upperCase(city) }} 
       <span>{{ upperCase(countryName()) }}</span>
     </p>
   </div>
+    <div class="header-icon">
+      <img :src="hamburger" />
+    </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import { getCountry } from '../utils/country'
+import add from '../assets/icons/add.svg';
+import hamburger from '../assets/icons/hamburger.svg';
 
 export default {
   name: "TheHeader",
+  data() {
+    return {
+      add,
+      hamburger
+    }
+  },
   computed: {
     ...mapState({
       city: ({ weather }) => weather && weather.data.name,
