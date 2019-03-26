@@ -2,6 +2,7 @@
     <div class="header-icon">
       <img :src="add" />
     </div>
+    <div class="header-location">
     <p v-if="city">
       {{ upperCase(city) }} 
       <span>{{ upperCase(countryName()) }}</span>
