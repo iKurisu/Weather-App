@@ -18,6 +18,18 @@ img {
   display: block;
 }
 
+input {
+  outline: none;
+  background: rgba(0, 0, 0, .2);
+  border: 0;
+  padding: 5px 10px;
+  color: #edeceb;
+}
+
+::placeholder {
+  color: #dfdedd;
+}
+
 .-full-width {
   width: 100%;
 }
