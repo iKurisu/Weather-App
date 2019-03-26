@@ -10,6 +10,13 @@
         <span>{{ upperCase(countryName()) }}</span>
       </p>
     </div>
+    <div class="header-list" v-if="listIsActive">
+      <ul>
+        <li v-for="place in places">
+          {{ place }}
+        </li>
+      </ul>
+    </div>
     <div class="header-icon">
       <img :src="hamburger" />
     </div>
@@ -35,7 +42,8 @@ export default {
   computed: {
     ...mapState({
       city: ({ weather }) => weather && weather.data.name,
-      countryCode: ({ weather}) => weather && weather.data.sys.country
+      countryCode: ({ weather}) => weather && weather.data.sys.country,
+      places: ({ places }) => places
     })
   },
   methods: {
