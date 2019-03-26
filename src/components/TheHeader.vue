@@ -4,7 +4,7 @@
     <div class="header-icon">
       <img :src="add" />
     </div>
-    <div class="header-location">
+    <div class="header-location" @click="toggleList">
       <p v-if="city">
         {{ upperCase(city) }}
         <span>{{ upperCase(countryName()) }}</span>
@@ -28,7 +28,8 @@ export default {
   data() {
     return {
       add,
-      hamburger
+      hamburger,
+      listIsActive: false
     }
   },
   computed: {
@@ -43,6 +44,9 @@ export default {
     },
     upperCase(str) {
       return str.toUpperCase();
+    },
+    toggleList() {
+      this.listIsActive = !this.listIsActive;
     }
   }
 }
