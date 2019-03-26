@@ -5,11 +5,11 @@
       <img :src="add" />
     </div>
     <div class="header-location">
-    <p v-if="city">
-      {{ upperCase(city) }} 
-      <span>{{ upperCase(countryName()) }}</span>
-    </p>
-  </div>
+      <p v-if="city">
+        {{ upperCase(city) }}
+        <span>{{ upperCase(countryName()) }}</span>
+      </p>
+    </div>
     <div class="header-icon">
       <img :src="hamburger" />
     </div>
@@ -50,7 +50,15 @@ export default {
 
 <style lang="scss">
 .header {
-  width: 100%;
+  margin: 0 5%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-location, .header-icon {
+  cursor: pointer;
 }
 
 .header p {
@@ -58,11 +66,16 @@ export default {
   font-size: 14px;
 }
 
+.header-icon {
+  width: 4.5vw;
+  max-width: 6vh;
+}
+
 .header p span {
   opacity: .75;
 }
 
-.top {
+.-top {
   position: absolute;
   top: 0;
 }
