@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-container bottom">
+  <div class="forecast-container -full-width -bottom">
     <div class="forecast">
       <div class="forecast-day" v-for="day in forecast" :key="day.dt">
         <p class="forecast-day-header">{{ getDay(day) }}</p>
@@ -38,7 +38,6 @@ export default {
 <style lang="scss">
 .forecast-container {
   background: #fff;
-  width: 100%;
   height: 25%;
 }
 
@@ -77,7 +76,7 @@ export default {
   transform: translateX(4px);
 }
 
-.bottom {
+.-bottom {
   position: absolute;
   bottom: 0;
 }
