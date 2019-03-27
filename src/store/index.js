@@ -1,6 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { fetchForecastByCoords, fetchWeatherByCoords } from '../api';
+import { 
+  fetchForecastByCoords, 
+  fetchWeatherByCoords,
+  fetchForecastByCity,
+  fetchWeatherByCity 
+} from '../api';
 import { getForecastAtNoon } from '../utils';
 
 Vue.use(Vuex);
@@ -21,6 +26,9 @@ export default new Vuex.Store({
     },
     setForecasts(state, forecasts) {
       state.forecasts = forecasts
+    },
+    addPlace(state, place) {
+      state.places.push(place);
     }
   },
   actions: {
@@ -28,6 +36,13 @@ export default new Vuex.Store({
       commit('setLocation', location);
       const weather = await fetchWeatherByCoords(location.coords);
       const forecasts = await fetchForecastByCoords(location.coords);
+      commit('setForecasts', getForecastAtNoon(forecasts));
+      commit('setWeather', weather);
+    },
+    async addPlace({ commit }, place) {
+      commit('addPlace', place);
+      const weather = await fetchWeatherByCity(place);
+      const forecasts = await fetchForecastByCity(place);
       commit('setForecasts', getForecastAtNoon(forecasts));
       commit('setWeather', weather);
     }
