@@ -14,12 +14,14 @@
         <span>{{ upperCase(countryName()) }}</span>
       </p>
     </div>
-    <div class="header-list" v-if="listIsActive">
-      <ul>
-        <li v-for="place in places">
-          {{ place }}
+    <div class="header-list -text-center" v-if="listIsActive">
+      <ul v-if="places.length > 0">
+        <li v-for="[ city, code ] in places">
+          {{ city.toUpperCase() }} 
+          <span>{{ code.toUpperCase() }}</span>
         </li>
       </ul>
+      <p v-else>Empty</p>
     </div>
     <form v-if="formIsActive" @submit="submitForm">
       <input 
