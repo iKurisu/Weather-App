@@ -22,7 +22,12 @@
       </ul>
     </div>
     <form v-if="formIsActive" @submit="submitForm">
-      <input type="text" v-model="formValue" placeholder="City, Country Code"/>
+      <input 
+        :class="{'header-form--error': !inputIsValid}" 
+        type="text" 
+        v-model="formValue" 
+        placeholder="City, Country Code"
+      />
     </form>
     <div class="header-icon">
       <img :src="hamburger" />
@@ -43,7 +48,6 @@ export default {
     return {
       add,
       hamburger,
-      formIsActive: false,
       listIsActive: false,
       formValue: ''
     }
@@ -52,7 +56,9 @@ export default {
     ...mapState({
       city: ({ weather }) => weather && weather.data.name,
       countryCode: ({ weather}) => weather && weather.data.sys.country,
-      places: ({ places }) => places
+      places: ({ places }) => places,
+      formIsActive: ({ formIsActive }) => formIsActive,
+      inputIsValid: ({ inputIsValid }) => inputIsValid
     })
   },
   methods: {
@@ -63,7 +69,8 @@ export default {
       return str.toUpperCase();
     },
     toggleForm() {
-      this.formIsActive = !this.formIsActive;
+      this.$store.commit('toggleForm');
+      this.$store.commit('setInput', true);
       this.formValue = '';
     },
     toggleList() {
@@ -73,7 +80,6 @@ export default {
       e.preventDefault();
       const place = this.formValue.split(', ');
       this.$store.dispatch('addPlace', place);
-      this.toggleForm();
     }
   }
 }
@@ -108,6 +114,10 @@ export default {
 
 .header input {
   max-width: 19vh;
+}
+
+.header-form--error {
+  background: #c86564d2;
 }
 
 .-top {
