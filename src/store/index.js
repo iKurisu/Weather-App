@@ -31,20 +31,22 @@ export default new Vuex.Store({
       state.places.push(place);
     }
   },
-  actions: {
-    async setData({ commit }, location) {
-      commit('setLocation', location);
-      const weather = await fetchWeatherByCoords(location.coords);
-      const forecasts = await fetchForecastByCoords(location.coords);
+  actions: { 
+    storeData({ commit }, { weather, forecasts }) {
       commit('setForecasts', getForecastAtNoon(forecasts));
       commit('setWeather', weather);
     },
-    async addPlace({ commit }, place) {
+    async setData({ commit, dispatch }, location) {
+      commit('setLocation', location);
+      const weather = await fetchWeatherByCoords(location.coords);
+      const forecasts = await fetchForecastByCoords(location.coords);
+      dispatch('storeData', { weather, forecasts });
+    },
+    async addPlace({ commit, dispatch }, place) {
       commit('addPlace', place);
       const weather = await fetchWeatherByCity(place);
       const forecasts = await fetchForecastByCity(place);
-      commit('setForecasts', getForecastAtNoon(forecasts));
-      commit('setWeather', weather);
+      dispatch('storeData', { weather, forecasts });
     }
   }
 })
