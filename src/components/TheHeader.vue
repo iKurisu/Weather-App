@@ -110,7 +110,7 @@ export default {
   max-width: 6vh;
 }
 
-.header p span {
+.header p span, .header li span {
   opacity: .75;
 }
 
@@ -120,6 +120,37 @@ export default {
 
 .header-form--error {
   background: #c86564d2;
+}
+
+.header-list {
+  background: #fff;
+  width: 42vw;
+  position: absolute;
+  top: 10vh;
+  border-radius: 5px;
+  box-shadow: 0 2px 7px .2px rgba(0, 0, 0, .2);
+}
+
+.header-list p {
+  color: #1a1a1a;
+  font-style: italic;
+  cursor: default;
+}
+
+.header-list li {
+  cursor: pointer;
+  list-style: none;
+}
+
+.header-list li:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.header-list {
+  p, li {
+    font-size: 14px;
+    padding: 6px 0;
+  }
 }
 
 .-top {
