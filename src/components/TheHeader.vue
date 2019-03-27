@@ -71,6 +71,9 @@ export default {
     },
     submitForm(e) {
       e.preventDefault();
+      const place = this.formValue.split(', ');
+      this.$store.dispatch('addPlace', place);
+      this.toggleForm();
     }
   }
 }
