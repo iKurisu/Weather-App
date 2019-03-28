@@ -54,9 +54,12 @@ export default new Vuex.Store({
       }
     },
     async setData({ commit, dispatch }, location) {
-      commit('setLocation', location);
       const weather = await fetchWeatherByCoords(location.coords);
       const forecasts = await fetchForecastByCoords(location.coords);
+      const city = weather.data.name;
+      const countryCode = weather.data.sys.country;
+      
+      commit('setLocation', { city, countryCode });
       dispatch('storeData', { weather, forecasts });
     },
     async addPlace({ commit, dispatch }, place) {
