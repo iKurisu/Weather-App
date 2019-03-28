@@ -125,7 +125,7 @@ export default {
 .header-list {
   background: #fff;
   width: 42vw;
-  height: 27vh;
+  max-height: 27vh;
   overflow-y: scroll;
   position: absolute;
   top: 10vh;
