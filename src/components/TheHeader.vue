@@ -14,15 +14,26 @@
         <span>{{ upperCase(countryName()) }}</span>
       </p>
     </div>
-    <div class="header-list" v-if="listIsActive">
-      <ul>
-        <li v-for="place in places">
-          {{ place }}
+    <div class="header-list -center -text-center" v-if="listIsActive">
+      <ul v-if="places.length > 0">
+        <li 
+          v-for="{place, id} in places" 
+          :key="id" 
+          @click="setPlace(place)"
+        >
+          {{ place[0].toUpperCase() }} 
+          <span>{{ place[1].toUpperCase() }}</span>
         </li>
       </ul>
+      <p v-else>Empty</p>
     </div>
     <form v-if="formIsActive" @submit="submitForm">
-      <input type="text" v-model="formValue" placeholder="City, Country Code"/>
+      <input 
+        :class="{'header-form--error': !inputIsValid}" 
+        type="text" 
+        v-model="formValue" 
+        placeholder="City, Country Code"
+      />
     </form>
     <div class="header-icon">
       <img :src="hamburger" />
@@ -43,7 +54,6 @@ export default {
     return {
       add,
       hamburger,
-      formIsActive: false,
       listIsActive: false,
       formValue: ''
     }
@@ -52,7 +62,9 @@ export default {
     ...mapState({
       city: ({ weather }) => weather && weather.data.name,
       countryCode: ({ weather}) => weather && weather.data.sys.country,
-      places: ({ places }) => places
+      places: ({ places }) => places,
+      formIsActive: ({ formIsActive }) => formIsActive,
+      inputIsValid: ({ inputIsValid }) => inputIsValid
     })
   },
   methods: {
@@ -62,18 +74,22 @@ export default {
     upperCase(str) {
       return str.toUpperCase();
     },
-    toggleForm() {
-      this.formIsActive = !this.formIsActive;
-      this.formValue = '';
-    },
     toggleList() {
       this.listIsActive = !this.listIsActive;
+    },
+    setPlace(place) {
+      this.$store.dispatch('setPlace', place)
+      this.toggleList();
+    },
+    toggleForm() {
+      this.$store.commit('toggleForm');
+      this.$store.commit('setInput', true);
+      this.formValue = '';
     },
     submitForm(e) {
       e.preventDefault();
       const place = this.formValue.split(', ');
       this.$store.dispatch('addPlace', place);
-      this.toggleForm();
     }
   }
 }
@@ -102,12 +118,49 @@ export default {
   max-width: 6vh;
 }
 
-.header p span {
+.header p span, .header li span {
   opacity: .75;
 }
 
 .header input {
   max-width: 19vh;
+}
+
+.header-form--error {
+  background: #c86564d2;
+}
+
+.header-list {
+  background: #fff;
+  width: 42vw;
+  max-height: 27vh;
+  overflow-y: scroll;
+  position: absolute;
+  top: 10vh;
+  border-radius: 5px;
+  box-shadow: 0 2px 7px .2px rgba(0, 0, 0, .2);
+}
+
+.header-list p {
+  color: #1a1a1a;
+  font-style: italic;
+  cursor: default;
+}
+
+.header-list li {
+  cursor: pointer;
+  list-style: none;
+}
+
+.header-list li:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.header-list {
+  p, li {
+    font-size: 14px;
+    padding: 6px 0;
+  }
 }
 
 .-top {

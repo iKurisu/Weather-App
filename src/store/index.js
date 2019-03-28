@@ -15,7 +15,9 @@ export default new Vuex.Store({
     location: null,
     weather: null,
     forecasts: [],
-    places: []
+    places: [],
+    formIsActive: false,
+    inputIsValid: false
   },
   mutations: {
     setLocation(state, location) {
@@ -27,14 +29,29 @@ export default new Vuex.Store({
     setForecasts(state, forecasts) {
       state.forecasts = forecasts
     },
-    addPlace(state, place) {
-      state.places.push(place);
+    setPlace(state, place) {
+      state.location = place;
+    },
+    addPlace(state, [ city, code ]) {
+      const id = new Date().getTime();
+      state.places.push({ 
+        id,
+        place: [ city, code ], 
+      });
+    },
+    toggleForm(state) {
+      state.formIsActive = !state.formIsActive;
+    },
+    setInput(state, bool) {
+      state.inputIsValid = bool;
     }
   },
   actions: { 
     storeData({ commit }, { weather, forecasts }) {
-      commit('setForecasts', getForecastAtNoon(forecasts));
-      commit('setWeather', weather);
+      if (weather) {
+        commit('setForecasts', getForecastAtNoon(forecasts));
+        commit('setWeather', weather);
+      }
     },
     async setData({ commit, dispatch }, location) {
       commit('setLocation', location);
@@ -46,7 +63,23 @@ export default new Vuex.Store({
       commit('addPlace', place);
       const weather = await fetchWeatherByCity(place);
       const forecasts = await fetchForecastByCity(place);
-      dispatch('storeData', { weather, forecasts });
+
+      if (weather && forecasts) {
+        commit('setInput', true);
+        commit('toggleForm');
+        dispatch('storeData', { weather, forecasts });
+      } else {
+        commit('setInput', false);
+      }
+    },
+    async setPlace({ commit, dispatch }, place) {
+      commit('setPlace', place);
+      const weather = await fetchWeatherByCity(place);
+      const forecasts = await fetchForecastByCity(place);
+
+      if (weather && forecasts) {
+        dispatch("storeData", { weather, forecasts });
+      }
     }
   }
 })
