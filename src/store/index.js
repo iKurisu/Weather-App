@@ -29,8 +29,15 @@ export default new Vuex.Store({
     setForecasts(state, forecasts) {
       state.forecasts = forecasts
     },
-    addPlace(state, place) {
-      state.places.push(place);
+    addPlace(state, [ city, code ]) {
+      const id = new Date().getTime();
+      state.places.push({ 
+        id,
+        place: {
+          city,
+          code
+        }, 
+      });
     },
     toggleForm(state) {
       state.formIsActive = !state.formIsActive;
