@@ -29,6 +29,9 @@ export default new Vuex.Store({
     setForecasts(state, forecasts) {
       state.forecasts = forecasts
     },
+    setPlace(state, place) {
+      state.location = place;
+    },
     addPlace(state, [ city, code ]) {
       const id = new Date().getTime();
       state.places.push({ 
@@ -67,6 +70,15 @@ export default new Vuex.Store({
         dispatch('storeData', { weather, forecasts });
       } else {
         commit('setInput', false);
+      }
+    },
+    async setPlace({ commit, dispatch }, place) {
+      commit('setPlace', place);
+      const weather = await fetchWeatherByCity(place);
+      const forecasts = await fetchForecastByCity(place);
+
+      if (weather && forecasts) {
+        dispatch("storeData", { weather, forecasts });
       }
     }
   }

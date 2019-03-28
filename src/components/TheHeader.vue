@@ -74,13 +74,17 @@ export default {
     upperCase(str) {
       return str.toUpperCase();
     },
+    toggleList() {
+      this.listIsActive = !this.listIsActive;
+    },
+    setPlace(place) {
+      this.$store.dispatch('setPlace', place)
+      this.toggleList();
+    },
     toggleForm() {
       this.$store.commit('toggleForm');
       this.$store.commit('setInput', true);
       this.formValue = '';
-    },
-    toggleList() {
-      this.listIsActive = !this.listIsActive;
     },
     submitForm(e) {
       e.preventDefault();
