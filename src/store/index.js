@@ -33,10 +33,7 @@ export default new Vuex.Store({
       const id = new Date().getTime();
       state.places.push({ 
         id,
-        place: {
-          city,
-          code
-        }, 
+        place: [ city, code ], 
       });
     },
     toggleForm(state) {

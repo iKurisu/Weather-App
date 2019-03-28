@@ -16,9 +16,13 @@
     </div>
     <div class="header-list -center -text-center" v-if="listIsActive">
       <ul v-if="places.length > 0">
-        <li v-for="{place, id} in places" :key="id">
-          {{ place.city.toUpperCase() }} 
-          <span>{{ place.code.toUpperCase() }}</span>
+        <li 
+          v-for="{place, id} in places" 
+          :key="id" 
+          @click="setPlace(place)"
+        >
+          {{ place[0].toUpperCase() }} 
+          <span>{{ place[1].toUpperCase() }}</span>
         </li>
       </ul>
       <p v-else>Empty</p>
