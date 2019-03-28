@@ -14,7 +14,7 @@
         <span>{{ upperCase(countryName()) }}</span>
       </p>
     </div>
-    <div class="header-list -text-center" v-if="listIsActive">
+    <div class="header-list -center -text-center" v-if="listIsActive">
       <ul v-if="places.length > 0">
         <li v-for="[ city, code ] in places">
           {{ city.toUpperCase() }} 
