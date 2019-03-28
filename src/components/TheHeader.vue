@@ -56,8 +56,8 @@ export default {
   },
   computed: {
     ...mapState({
-      city: ({ location }) => location && location.city,
-      countryCode: ({ location }) => location && location.countryCode,
+      city: ({ weather }) => weather && weather.data.name,
+      countryCode: ({ weather}) => weather && weather.data.sys.country,
       places: ({ places }) => places,
       formIsActive: ({ formIsActive }) => formIsActive,
       inputIsValid: ({ inputIsValid }) => inputIsValid
