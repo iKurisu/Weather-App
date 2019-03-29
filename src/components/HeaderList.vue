@@ -6,8 +6,8 @@
         :key="id" 
         @click="setPlace(place)"
       >
-        {{ place[0].toUpperCase() }} 
-        <span>{{ place[1].toUpperCase() }}</span>
+        {{ place.city.toUpperCase() }} 
+        <span>{{ place.code.toUpperCase() }}</span>
       </li>
     </ul>
     <p v-else>Empty</p>
@@ -19,14 +19,20 @@ import { mapState } from 'vuex';
 
 export default {
   name: "HeaderList",
+  props: {
+    toggleList: {
+      type: Function,
+      required: true
+    }
+  },
   computed: {
-    ...mapState({
-      places: ({ places }) => places
-    })
+    ...mapState('place', [
+      'places'
+    ])
   },
   methods: {
     setPlace(place) {
-      this.$store.dispatch('setPlace', place)
+      this.$store.dispatch('weather/setWeatherFromCity', place)
       this.toggleList();
     }
   }

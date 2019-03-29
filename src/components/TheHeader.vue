@@ -10,11 +10,11 @@
       v-show="!formIsActive"
     >
       <p v-if="city">
-        {{ upperCase(city) }}
-        <span>{{ upperCase(countryName()) }}</span>
+        {{ city.toUpperCase() }}
+        <span>{{ countryName().toUpperCase() }}</span>
       </p>
     </div>
-    <HeaderList v-show="listIsActive" />
+    <HeaderList v-show="listIsActive" :toggleList="toggleList" />
     <HeaderForm v-show="formIsActive" />
     <div class="header-icon">
       <img :src="hamburger" />
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import { getCountry } from '../utils/country';
 import HeaderForm from './HeaderForm';
 import HeaderList from './HeaderList';
@@ -45,25 +45,24 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      city: ({ weather }) => weather && weather.data.name,
-      countryCode: ({ weather}) => weather && weather.data.sys.country,
-      formIsActive: ({ formIsActive }) => formIsActive
-    })
+    ...mapGetters('weather', [
+      'city',
+      'countryCode'
+    ]),
+    ...mapState('form', [
+      'formIsActive'
+    ])
   },
   methods: {
     countryName() {
       return getCountry(this.countryCode);
     },
-    upperCase(str) {
-      return str.toUpperCase();
-    },
     toggleList() {
       this.listIsActive = !this.listIsActive;
     },
     toggleForm() {
-      this.$store.commit('toggleForm');
-      this.$store.commit('setInput', true);
+      this.$store.commit('form/toggleForm');
+      this.$store.commit('form/setInput', true);
     }
   }
 }
