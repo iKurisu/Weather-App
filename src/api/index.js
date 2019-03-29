@@ -15,7 +15,7 @@ const byCoords = url => ({ latitude: lat, longitude: lon }) => {
   return makeRequest(url, params);
 }
 
-const byCity = url => ([ city, code ]) => {
+const byCity = url => ({ city, code }) => {
   const params = { q: `${city},${code}`, APPID };
   return makeRequest(url, params);
 }
