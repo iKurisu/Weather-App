@@ -3,7 +3,8 @@
     <input 
       :class="{'header-form--error': !inputIsValid}" 
       type="text" 
-      v-model="formValue" 
+      :value="value"
+      @input="updateValue"
       placeholder="City, Country Code"
     />
   </form>
@@ -14,21 +15,19 @@ import { mapState } from 'vuex';
 
 export default {
   name: "HeaderForm",
-  data() {
-    return {
-      formValue: ''
-    }
-  },
   computed: {
-    ...mapState({
-      inputIsValid: ({ inputIsValid }) => inputIsValid
-    })
+    ...mapState('form', [
+      'value',
+      'inputIsValid'
+    ])
   },
   methods: {
+    updateValue(e) {
+      this.$store.commit('form/updateValue', e.target.value);
+    },
     submitForm(e) {
       e.preventDefault();
-      const place = this.formValue.split(', ');
-      this.$store.dispatch('addPlace', place);
+      this.$store.dispatch('form/submitForm');
     }
   }
 }

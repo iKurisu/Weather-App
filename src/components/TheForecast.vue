@@ -1,7 +1,7 @@
 <template>
   <div class="forecast-container -full-width -bottom">
     <div class="forecast">
-      <div class="forecast-day" v-for="day in forecast" :key="day.dt">
+      <div class="forecast-day" v-for="day in forecasts" :key="day.dt">
         <p class="forecast-day-header">{{ getDay(day) }}</p>
         <img :src="getIcon(day)" />
         <p class="forecast-day-temp">{{ toCelsius(day.main.temp_max) }}</p>
@@ -11,15 +11,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { weekdays } from '../utils';
 import { icon } from '../utils/icons';
 
 export default {
   name: "TheForecast",
   computed: {
-    forecast() {
-      return this.$store.state.forecasts;
-    }
+    ...mapState('weather', [
+      'forecasts'
+    ])
   },
   methods: {
     toCelsius(x) {
