@@ -20,7 +20,8 @@ export default {
   created() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
-        store.dispatch('setData', position)
+        const { coords: place } = position;
+        store.dispatch('weather/setWeatherFromCoords', place);
       })
     }
   },
