@@ -16,10 +16,10 @@
     </div>
     <HeaderList v-show="listIsActive" :toggleList="toggleList" />
     <HeaderForm v-show="formIsActive" />
-    <div class="header-icon">
+    <div class="header-icon" @click="toggleMenu">
       <img :src="hamburger" />
     </div>
-    <HeaderMenu />
+    <HeaderMenu v-show="menuIsActive" />
   </div>
 </div>
 </template>
@@ -44,7 +44,8 @@ export default {
     return {
       add,
       hamburger,
-      listIsActive: false
+      listIsActive: false,
+      menuIsActive: false
     }
   },
   computed: {
@@ -62,6 +63,9 @@ export default {
     },
     toggleList() {
       this.listIsActive = !this.listIsActive;
+    },
+    toggleMenu() {
+      this.menuIsActive = !this.menuIsActive;
     },
     toggleForm() {
       this.$store.commit('form/toggleForm');
