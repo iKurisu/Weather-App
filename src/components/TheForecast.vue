@@ -27,7 +27,7 @@ export default {
       return Math.round(x - 273.15) + "º";
     },
     getDay(day) {
-      return weekdays[new Date(day.dt_txt).getDay() - 1];
+      return weekdays[new Date(day.dt_txt).getDay()];
     },
     getIcon(day) {
       return icon[day.weather[0].main];
