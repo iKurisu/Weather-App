@@ -1,36 +1,37 @@
 <template>
   <div class="forecast-container -full-width -bottom">
     <div class="forecast">
-      <div class="forecast-day" v-for="day in forecasts" :key="day.dt">
+      <div 
+        class="forecast-day" 
+        v-for="{ day, weather, temperature, id } in forecasts" 
+        :key="id"
+      >
         <p class="forecast-day-header">{{ getDay(day) }}</p>
-        <img :src="getIcon(day)" />
-        <p class="forecast-day-temp">{{ toCelsius(day.main.temp_max) }}</p>
+        <img :src="getIcon(weather)" />
+        <p class="forecast-day-temp">{{ temperature }}º</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import { weekdays } from '../utils';
 import { icon } from '../utils/icons';
 
 export default {
   name: "TheForecast",
   computed: {
-    ...mapState('weather', [
+    ...mapGetters('weather', [
       'forecasts'
     ])
   },
   methods: {
-    toCelsius(x) {
-      return Math.round(x - 273.15) + "º";
-    },
     getDay(day) {
-      return weekdays[new Date(day.dt_txt).getDay()];
+      return weekdays[new Date(day).getDay()];
     },
-    getIcon(day) {
-      return icon[day.weather[0].main];
+    getIcon(weather) {
+      return icon[weather];
     }
   }
 }

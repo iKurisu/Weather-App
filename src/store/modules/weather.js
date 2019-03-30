@@ -5,6 +5,7 @@ import {
   fetchForecastByCity
 } from "../../api";
 import { getForecastAtNoon } from "../../utils";
+import * as convert from '../../utils/temperature';
 
 const setWeather = (weatherFn, forecastFn) => async ({ commit }, place) => {
   const currentWeather = await weatherFn(place);
@@ -16,11 +17,18 @@ export default {
   namespaced: true,
   state: {
     currentWeather: null,
-    forecasts: []
+    forecasts: [],
+    unit: 'Celsius'
   },
   getters: {
     city: ({ currentWeather }) => currentWeather && currentWeather.name,
-    countryCode: ({ currentWeather }) => currentWeather && currentWeather.sys.country
+    countryCode: ({ currentWeather }) => currentWeather && currentWeather.sys.country,
+    forecasts: ({ forecasts, unit }) => forecasts.map(forecast => ({
+      day: forecast.dt_txt,
+      weather: forecast.weather[0].main,
+      temperature: convert[`to${unit}`](forecast.main.temp_max),
+      id: forecast.dt
+    }))
   },
   mutations: {
     setWeather(state, { currentWeather, forecasts }) {
