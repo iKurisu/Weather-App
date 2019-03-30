@@ -1,5 +1,5 @@
 <template>
-  <div class="header-menu -text-center">
+  <div class="container -right -text-center">
     <div class="menu-option">
       <p>T. units: </p>
       <div class="menu-option-units">
@@ -21,15 +21,6 @@ export default {
 </script>
 
 <style lang="scss">
-.header-menu {
-  background: #fff;
-  width: 42vw;
-  position: absolute;
-  top: 10vh;
-  border-radius: 5px;
-  box-shadow: 0 2px 7px .2px rgba(0, 0, 0, .2);
-}
-
 .menu-option {
   padding: 6px 10px;
   display: flex;
