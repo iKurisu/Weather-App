@@ -19,6 +19,7 @@
     <div class="header-icon">
       <img :src="hamburger" />
     </div>
+    <HeaderMenu />
   </div>
 </div>
 </template>
@@ -28,6 +29,7 @@ import { mapState, mapGetters } from 'vuex';
 import { getCountry } from '../utils/country';
 import HeaderForm from './HeaderForm';
 import HeaderList from './HeaderList';
+import HeaderMenu from './HeaderMenu';
 import add from '../assets/icons/add.svg';
 import hamburger from '../assets/icons/hamburger.svg';
 
@@ -35,7 +37,8 @@ export default {
   name: "TheHeader",
   components: {
     HeaderList,
-    HeaderForm
+    HeaderForm,
+    HeaderMenu
   },
   data() {
     return {
