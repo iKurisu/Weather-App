@@ -1,5 +1,5 @@
 <template>
-  <div class="header-list -center -text-center">
+  <div class="header-list container -center -text-center">
     <ul v-if="places.length > 0">
       <li 
         v-for="{place, id} in places" 
@@ -41,14 +41,8 @@ export default {
 
 <style lang="scss">
 .header-list {
-  background: #fff;
-  width: 42vw;
   max-height: 27vh;
   overflow-y: scroll;
-  position: absolute;
-  top: 10vh;
-  border-radius: 5px;
-  box-shadow: 0 2px 7px .2px rgba(0, 0, 0, .2);
 }
 
 .header-list p {
