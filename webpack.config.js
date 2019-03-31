@@ -8,7 +8,7 @@ module.exports = {
   entry: "./src/main.js",
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -53,5 +53,8 @@ module.exports = {
         ]
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.vue']
   }
 }
