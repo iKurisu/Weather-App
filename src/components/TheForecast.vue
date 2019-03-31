@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss">
 .forecast-container {
-  background: #fff;
+  background: #fff5;
   height: 25%;
 }
 
@@ -66,6 +66,7 @@ export default {
 
 .forecast-day p {
   margin: 3px 0;
+  color: #0a0a0a;
 }
 
 .forecast-day-header {
