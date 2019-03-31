@@ -1,5 +1,5 @@
 <template>
-  <div class="container -right -text-center">
+  <div class="menu container -right -text-center">
     <div class="menu-option">
       <p>T. units: </p>
       <div class="menu-option-units">
@@ -45,6 +45,10 @@ export default {
 </script>
 
 <style lang="scss">
+.menu {
+  z-index: 10;
+}
+
 .menu-option {
   padding: 6px 10px;
   display: flex;
