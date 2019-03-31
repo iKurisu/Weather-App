@@ -32,8 +32,10 @@ export default {
 </script>
 
 <style lang="scss">
+$color-1: rgb(255, 219, 121);
+$color-2: rgb(255, 140, 87);
 .main {
-  background: #65a8a6;
+  background: linear-gradient(to top, $color-1, $color-2);
   height: 100vh;
 }
 </style>
