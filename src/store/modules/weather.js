@@ -34,6 +34,9 @@ export default {
     setWeather(state, { currentWeather, forecasts }) {
       state.currentWeather = currentWeather.data;
       state.forecasts = getForecastAtNoon(forecasts.data);
+    },
+    changeUnits(state, unit) {
+      state.unit = unit;
     }
   },
   actions: {

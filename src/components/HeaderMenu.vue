@@ -3,10 +3,22 @@
     <div class="menu-option">
       <p>T. units: </p>
       <div class="menu-option-units">
-        <div class="menu-option-unit">
+        <div 
+          :class="[
+            'menu-option-unit', 
+            { 'menu-option-unit--inactive': unit === 'Fahrenheit' }
+          ]" 
+          @click="changeUnits('Celsius')"
+        >
           <p>C</p>  
         </div>
-        <div class="menu-option-unit menu-option-unit--inactive">
+        <div 
+          :class="[
+            'menu-option-unit', 
+            { 'menu-option-unit--inactive': unit === 'Celsius' }
+          ]" 
+          @click="changeUnits('Fahrenheit')"
+        >
           <p>F</p>
         </div>
       </div>
@@ -15,8 +27,20 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
-  name: "HeaderMenu"
+  name: "HeaderMenu",
+  computed: {
+    ...mapState('weather', [
+      'unit'
+    ])
+  },
+  methods: {
+    ...mapMutations('weather', [
+      'changeUnits'
+    ])
+  }
 }
 </script>
 
