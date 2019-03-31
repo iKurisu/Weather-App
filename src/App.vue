@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <TheHeader />
+    <TheWeather />
     <TheForecast />
   </div>
 </template>
@@ -8,12 +9,14 @@
 <script>
 import store from './store';
 import TheHeader from './components/TheHeader';
+import TheWeather from './components/TheWeather';
 import TheForecast from './components/TheForecast';
 
 export default {
   name: "App",
   components: {
     TheHeader,
+    TheWeather,
     TheForecast
   },
   store,
