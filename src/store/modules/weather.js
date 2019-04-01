@@ -25,7 +25,8 @@ export default {
     countryCode: ({ currentWeather }) => currentWeather && currentWeather.sys.country,
     weather: ({ currentWeather, unit }) => ({
       temperature: currentWeather && convert[`to${unit}`](currentWeather.main.temp_max),
-      description: currentWeather && currentWeather.weather[0].description
+      description: currentWeather && currentWeather.weather[0].description,
+      main: currentWeather && currentWeather.weather[0].main.toLowerCase()
     }),
     forecasts: ({ currentWeather, forecasts, unit }) => {
       if (currentWeather) {
