@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     getDay(day) {
-      return weekdays[new Date(day).getDay()];
+      return day === 'NOW' ? day : weekdays[new Date(day).getDay()];
     },
     getIcon(weather) {
       return icon[weather];
