@@ -40,7 +40,7 @@ export default {
 <style lang="scss">
 .forecast-container {
   background: #fff5;
-  height: 25%;
+  height: 24%;
 }
 
 .forecast {
@@ -56,7 +56,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  opacity: .8;
+  opacity: .73;
 }
 
 .forecast-day img {
@@ -66,7 +66,7 @@ export default {
 
 .forecast-day p {
   margin: 3px 0;
-  color: #0a0a0a;
+  color: #000;
 }
 
 .forecast-day-header {
