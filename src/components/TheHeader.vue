@@ -101,9 +101,18 @@ export default {
   opacity: .75;
 }
 
-.-top {
-  position: absolute;
-  top: 0;
+@media (min-width: 768px) {
+  .header {
+    margin: 0 7%;
+  }
+
+  .header-location p {
+    font-size: 16px;
+  }
+
+  .header-icon {
+    width: 17px;
+  }
 }
 </style>
 

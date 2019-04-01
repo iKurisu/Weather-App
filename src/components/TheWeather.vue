@@ -42,7 +42,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5vh;
+  margin-top: 7vh;
 }
 
 .weather p {
@@ -67,7 +67,7 @@ export default {
 .weather-description {
   font-size: 26px;
   opacity: .87;
-  margin-top: 4vh;
+  margin-top: 6vh;
   letter-spacing: .9px;
 }
 </style>

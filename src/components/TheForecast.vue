@@ -40,7 +40,8 @@ export default {
 <style lang="scss">
 .forecast-container {
   background: #fff5;
-  height: 24%;
+  height: 26%;
+  max-height: 40vw;
 }
 
 .forecast {
@@ -79,9 +80,49 @@ export default {
   transform: translateX(4px);
 }
 
-.-bottom {
-  position: absolute;
-  bottom: 0;
+@media (min-width: 768px) {
+  .forecast-container {
+    height: 33%;
+    max-height: 20vw;
+  }
+
+  .forecast {
+    margin: 0 15%;
+  }
+
+  .forecast img {
+    width: 34px;
+  }
+
+  .forecast-day-header {
+    font-size: 16px;
+  }
+
+  .forecast-day-temp {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .forecast-container {
+    height: 30%;
+    max-height: 16vw;
+  }
+
+  .forecast {
+    margin: 0 20%;
+  }
+
+  .forecast img {
+    width: 36px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .forecast-container {
+    height: 24%;
+    max-height: 14vw;
+  }
 }
 </style>
 
