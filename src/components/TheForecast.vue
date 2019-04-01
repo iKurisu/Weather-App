@@ -102,5 +102,27 @@ export default {
     font-size: 20px;
   }
 }
+
+@media (min-width: 1000px) {
+  .forecast-container {
+    height: 30%;
+    max-height: 16vw;
+  }
+
+  .forecast {
+    margin: 0 20%;
+  }
+
+  .forecast img {
+    width: 36px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .forecast-container {
+    height: 24%;
+    max-height: 14vw;
+  }
+}
 </style>
 
