@@ -48,7 +48,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  margin: 0 5%;
+  margin: 0 10%;
 }
 
 .forecast-day {
