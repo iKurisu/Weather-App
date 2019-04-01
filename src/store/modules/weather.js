@@ -4,7 +4,7 @@ import {
   fetchWeatherByCity,
   fetchForecastByCity
 } from "../../api";
-import { getForecastAtNoon } from "../../utils";
+import { getForecastAtNoon, forecastFormat, nextThreeDays } from "../../utils";
 import * as convert from '../../utils/temperature';
 
 const setWeather = (weatherFn, forecastFn) => async ({ commit }, place) => {
@@ -27,12 +27,15 @@ export default {
       temperature: currentWeather && convert[`to${unit}`](currentWeather.main.temp_max),
       description: currentWeather && currentWeather.weather[0].description
     }),
-    forecasts: ({ forecasts, unit }) => forecasts.map(forecast => ({
-      day: forecast.dt_txt,
-      weather: forecast.weather[0].main,
-      temperature: convert[`to${unit}`](forecast.main.temp_max),
-      id: forecast.dt
-    }))
+    forecasts: ({ currentWeather, forecasts, unit }) => {
+      if (currentWeather) {
+        return [
+          currentWeather, 
+          ...forecasts.filter(nextThreeDays)
+        ].map(forecastFormat(unit));
+      }
+      return [];
+    }
   },
   mutations: {
     setWeather(state, { currentWeather, forecasts }) {
