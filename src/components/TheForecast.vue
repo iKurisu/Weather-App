@@ -60,7 +60,7 @@ export default {
 }
 
 .forecast-day img {
-  width: 47%;
+  width: 28px;
   height: auto;
 }
 

@@ -94,8 +94,7 @@ export default {
 }
 
 .header-icon {
-  width: 4.5vw;
-  max-width: 6vh;
+  width: 15px;
 }
 
 .header p span, .header li span {
