@@ -42,7 +42,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4vh;
+  margin-top: 7vh;
 }
 
 .weather p {
@@ -52,6 +52,7 @@ export default {
 .weather-temperature {
   font-size: 130px;
   transform: translateX(15.5px);
+  opacity: .95;
 }
 
 .weather-temperature span {
@@ -65,6 +66,8 @@ export default {
 
 .weather-description {
   font-size: 26px;
-  margin-top: 2vh;
+  opacity: .87;
+  margin-top: 6vh;
+  letter-spacing: .9px;
 }
 </style>

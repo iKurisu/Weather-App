@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div :class="['main', background]">
     <TheHeader />
     <TheWeather />
     <TheForecast />
@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import store from './store';
 import TheHeader from './components/TheHeader';
 import TheWeather from './components/TheWeather';
@@ -28,12 +29,62 @@ export default {
       })
     }
   },
+  computed: {
+    ...mapGetters('weather', [
+      'weather'
+    ]),
+    background() {
+      const { temperature, main } = this.weather;
+      if (temperature > 20 && main === 'clear') {
+        return 'warm';
+      }
+      return main;
+    }
+  }
 }
 </script>
 
 <style lang="scss">
+$color-warm-1: rgb(255, 219, 121);
+$color-warm-2: rgb(255, 140, 87);
+
+$color-clear-1: rgb(132, 189, 255);
+$color-clear-2: rgb(36, 119, 228);
+
+$color-clouds-1: rgb(195, 212, 214);
+$color-clouds-2: rgb(140, 168, 236);
+
+$color-rain-1: rgb(195, 212, 214);
+$color-rain-2: rgb(92, 114, 167);
+
+$color-snow-1: rgb(223, 213, 204);
+$color-snow-2: rgb(144, 182, 218);
+
+@mixin background($color-1, $color-2) {
+  background: linear-gradient(to top, $color-1, $color-2)
+}
+
 .main {
-  background: #65a8a6;
   height: 100vh;
+}
+
+.warm {
+  @include background($color-warm-1, $color-warm-2);
+}
+
+.rain {
+  @include background($color-rain-1, $color-rain-2);
+}
+
+.clear {
+  @include background($color-clear-1, $color-clear-2);
+}
+
+.snow {
+  @include background($color-snow-1, $color-snow-2);
+}
+
+.clouds {
+  @include background($color-clouds-1, $color-clouds-2);
 }
 </style>

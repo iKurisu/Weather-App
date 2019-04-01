@@ -62,7 +62,6 @@ export default {
 
 .menu-option-units {
   display: flex;
-  margin-left: 10px;
 }
 
 .menu-option-unit {

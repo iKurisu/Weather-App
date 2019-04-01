@@ -94,17 +94,25 @@ export default {
 }
 
 .header-icon {
-  width: 4.5vw;
-  max-width: 6vh;
+  width: 15px;
 }
 
 .header p span, .header li span {
   opacity: .75;
 }
 
-.-top {
-  position: absolute;
-  top: 0;
+@media (min-width: 768px) {
+  .header {
+    margin: 0 7%;
+  }
+
+  .header-location p {
+    font-size: 16px;
+  }
+
+  .header-icon {
+    width: 17px;
+  }
 }
 </style>
 

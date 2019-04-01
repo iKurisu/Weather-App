@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     getDay(day) {
-      return weekdays[new Date(day).getDay()];
+      return day === 'NOW' ? day : weekdays[new Date(day).getDay()];
     },
     getIcon(weather) {
       return icon[weather];
@@ -39,8 +39,9 @@ export default {
 
 <style lang="scss">
 .forecast-container {
-  background: #fff;
-  height: 25%;
+  background: #fff5;
+  height: 26%;
+  max-height: 40vw;
 }
 
 .forecast {
@@ -48,7 +49,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  margin: 0 5%;
+  margin: 0 10%;
 }
 
 .forecast-day {
@@ -56,16 +57,17 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  opacity: .8;
+  opacity: .73;
 }
 
 .forecast-day img {
-  width: 47%;
+  width: 28px;
   height: auto;
 }
 
 .forecast-day p {
   margin: 3px 0;
+  color: #000;
 }
 
 .forecast-day-header {
@@ -78,9 +80,49 @@ export default {
   transform: translateX(4px);
 }
 
-.-bottom {
-  position: absolute;
-  bottom: 0;
+@media (min-width: 768px) {
+  .forecast-container {
+    height: 33%;
+    max-height: 20vw;
+  }
+
+  .forecast {
+    margin: 0 15%;
+  }
+
+  .forecast img {
+    width: 34px;
+  }
+
+  .forecast-day-header {
+    font-size: 16px;
+  }
+
+  .forecast-day-temp {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .forecast-container {
+    height: 30%;
+    max-height: 16vw;
+  }
+
+  .forecast {
+    margin: 0 20%;
+  }
+
+  .forecast img {
+    width: 36px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .forecast-container {
+    height: 24%;
+    max-height: 14vw;
+  }
 }
 </style>
 

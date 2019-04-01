@@ -36,6 +36,7 @@ export default {
 <style lang="scss">
 .header input {
   max-width: 19vh;
+  padding: 7px 25px;
 }
 
 .header-form--error {
