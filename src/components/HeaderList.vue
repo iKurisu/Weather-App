@@ -21,9 +21,9 @@ export default {
       required: true
     }
   },
-  computed: {
-    ...mapState("place", ["places"])
-  },
+  computed: mapState({
+    places: "place/places"
+  }),
   methods: {
     ...mapActions({
       setWeatherFromCity: "weather/setWeatherFromCity"

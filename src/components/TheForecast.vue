@@ -21,9 +21,9 @@ import { icon } from "../utils/icons";
 
 export default {
   name: "TheForecast",
-  computed: {
-    ...mapGetters("weather", ["forecasts"])
-  },
+  computed: mapGetters({
+    forecasts: "weather/forecasts"
+  }),
   methods: {
     getDay(day) {
       return day === "NOW" ? day : weekdays[new Date(day).getDay()];

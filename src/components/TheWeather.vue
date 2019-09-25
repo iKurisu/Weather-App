@@ -17,11 +17,9 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "TheWeather",
-  computed: {
-    ...mapGetters({
-      currentWeather: "weather/currentWeather"
-    })
-  },
+  computed: mapGetters({
+    currentWeather: "weather/currentWeather"
+  }),
   methods: {
     capitalize(str) {
       if (!str) return;
