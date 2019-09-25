@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "HeaderList",
@@ -25,8 +25,11 @@ export default {
     ...mapState("place", ["places"])
   },
   methods: {
+    ...mapActions({
+      setWeatherFromCity: "weather/setWeatherFromCity"
+    }),
     setPlace(place) {
-      this.$store.dispatch("weather/setWeatherFromCity", place);
+      this.setWeatherFromCity(place);
       this.toggleList();
     }
   }

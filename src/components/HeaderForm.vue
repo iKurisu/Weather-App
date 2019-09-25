@@ -1,5 +1,5 @@
 <template>
-  <form @submit="submitForm">
+  <form @submit="submit">
     <input
       :class="{ 'header-form--error': !inputIsValid }"
       type="text"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "HeaderForm",
@@ -19,12 +19,18 @@ export default {
     ...mapState("form", ["value", "inputIsValid"])
   },
   methods: {
+    ...mapMutations({
+      updateFormValue: "form/updateValue"
+    }),
+    ...mapActions({
+      submitForm: "form/submitForm"
+    }),
     updateValue(e) {
-      this.$store.commit("form/updateValue", e.target.value);
+      this.updateFormValue(e.target.value);
     },
-    submitForm(e) {
+    submit(e) {
       e.preventDefault();
-      this.$store.dispatch("form/submitForm");
+      this.submitForm();
     }
   }
 };

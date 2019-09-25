@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 import { getCountry } from "../utils/country";
 import HeaderForm from "./HeaderForm";
 import HeaderList from "./HeaderList";
@@ -49,6 +49,9 @@ export default {
     ...mapState("form", ["formIsActive"])
   },
   methods: {
+    ...mapActions({
+      toggleForm: "form/toggleForm"
+    }),
     countryName() {
       return getCountry(this.countryCode);
     },
@@ -57,10 +60,6 @@ export default {
     },
     toggleMenu() {
       this.menuIsActive = !this.menuIsActive;
-    },
-    toggleForm() {
-      this.$store.commit("form/toggleForm");
-      this.$store.commit("form/setInput", true);
     }
   }
 };
