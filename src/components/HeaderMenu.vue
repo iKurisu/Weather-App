@@ -31,12 +31,12 @@ import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "HeaderMenu",
-  computed: {
-    ...mapState("weather", ["unit"])
-  },
-  methods: {
-    ...mapMutations("weather", ["changeUnits"])
-  }
+  computed: mapState({
+    unit: "weather/unit"
+  }),
+  methods: mapMutations({
+    changeUnits: "weather/changeUnits"
+  })
 };
 </script>
 

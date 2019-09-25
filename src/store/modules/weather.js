@@ -24,7 +24,7 @@ export default {
     city: ({ currentWeather }) => currentWeather && currentWeather.name,
     countryCode: ({ currentWeather }) =>
       currentWeather && currentWeather.sys.country,
-    weather: ({ currentWeather, unit }) => ({
+    currentWeather: ({ currentWeather, unit }) => ({
       temperature:
         currentWeather && convert[`to${unit}`](currentWeather.main.temp_max),
       description: currentWeather && currentWeather.weather[0].description,

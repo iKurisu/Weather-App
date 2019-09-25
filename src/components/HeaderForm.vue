@@ -15,9 +15,10 @@ import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "HeaderForm",
-  computed: {
-    ...mapState("form", ["value", "inputIsValid"])
-  },
+  computed: mapState({
+    value: "form/value",
+    inputIsValid: "form/inputIsValid"
+  }),
   methods: {
     ...mapMutations({
       updateFormValue: "form/updateValue"

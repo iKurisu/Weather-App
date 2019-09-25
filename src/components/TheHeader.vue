@@ -45,8 +45,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("weather", ["city", "countryCode"]),
-    ...mapState("form", ["formIsActive"])
+    ...mapGetters({
+      city: "weather/city",
+      countryCode: "weather/countryCode"
+    }),
+    ...mapState({
+      formIsActive: "form/formIsActive"
+    })
   },
   methods: {
     ...mapActions({
