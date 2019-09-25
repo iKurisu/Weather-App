@@ -8,7 +8,6 @@ export default {
   mutations: {
     toggleForm(state) {
       state.formIsActive = !state.formIsActive;
-      state.value = "";
     },
     setInput(state, bool) {
       state.inputIsValid = bool;
@@ -33,6 +32,11 @@ export default {
             commit("setInput", false);
           });
       }
+    },
+    toggleForm({ commit }) {
+      commit("toggleForm");
+      commit("updateValue", "");
+      commit("setInput", true);
     }
   }
 };
