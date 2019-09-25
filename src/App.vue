@@ -8,7 +8,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import store from "./store";
 import TheHeader from "./components/TheHeader";
 import TheWeather from "./components/TheWeather";
 import TheForecast from "./components/TheForecast";
@@ -20,7 +19,6 @@ export default {
     TheWeather,
     TheForecast
   },
-  store,
   computed: {
     ...mapGetters("weather", ["weather"]),
     background() {
