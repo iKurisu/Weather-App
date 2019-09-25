@@ -1,36 +1,33 @@
 <template>
   <form @submit="submitForm">
-    <input 
-      :class="{'header-form--error': !inputIsValid}" 
-      type="text" 
+    <input
+      :class="{ 'header-form--error': !inputIsValid }"
+      type="text"
       :value="value"
-      @input="updateValue"
       placeholder="City, Country Code"
+      @input="updateValue"
     />
   </form>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   name: "HeaderForm",
   computed: {
-    ...mapState('form', [
-      'value',
-      'inputIsValid'
-    ])
+    ...mapState("form", ["value", "inputIsValid"])
   },
   methods: {
     updateValue(e) {
-      this.$store.commit('form/updateValue', e.target.value);
+      this.$store.commit("form/updateValue", e.target.value);
     },
     submitForm(e) {
       e.preventDefault();
-      this.$store.dispatch('form/submitForm');
+      this.$store.dispatch("form/submitForm");
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

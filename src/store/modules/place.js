@@ -8,5 +8,5 @@ export default {
       const id = new Date().getTime();
       state.places.push({ place, id });
     }
-  },
+  }
 };
