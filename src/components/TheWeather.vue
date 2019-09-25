@@ -2,10 +2,12 @@
   <div class="weather-container">
     <div class="weather">
       <p class="weather-temperature">
-        {{ weather.temperature }}
+        {{ currentWeather.temperature }}
         <span>º</span>
       </p>
-      <p class="weather-description">{{ capitalize(weather.description) }}</p>
+      <p class="weather-description">
+        {{ capitalize(currentWeather.description) }}
+      </p>
     </div>
   </div>
 </template>
@@ -16,7 +18,9 @@ import { mapGetters } from "vuex";
 export default {
   name: "TheWeather",
   computed: {
-    ...mapGetters("weather", ["weather"])
+    ...mapGetters({
+      currentWeather: "weather/currentWeather"
+    })
   },
   methods: {
     capitalize(str) {
