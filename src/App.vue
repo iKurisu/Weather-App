@@ -20,9 +20,11 @@ export default {
     TheForecast
   },
   computed: {
-    ...mapGetters("weather", ["weather"]),
+    ...mapGetters({
+      currentWeather: "weather/currentWeather"
+    }),
     background() {
-      const { temperature, main } = this.weather;
+      const { temperature, main } = this.currentWeather;
       if (temperature > 20 && main === "clear") {
         return "warm";
       }
