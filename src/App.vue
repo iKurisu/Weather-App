@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import store from './store';
-import TheHeader from './components/TheHeader';
-import TheWeather from './components/TheWeather';
-import TheForecast from './components/TheForecast';
+import { mapGetters } from "vuex";
+import store from "./store";
+import TheHeader from "./components/TheHeader";
+import TheWeather from "./components/TheWeather";
+import TheForecast from "./components/TheForecast";
 
 export default {
   name: "App",
@@ -21,27 +21,25 @@ export default {
     TheForecast
   },
   store,
+  computed: {
+    ...mapGetters("weather", ["weather"]),
+    background() {
+      const { temperature, main } = this.weather;
+      if (temperature > 20 && main === "clear") {
+        return "warm";
+      }
+      return main;
+    }
+  },
   created() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         const { coords: place } = position;
-        store.dispatch('weather/setWeatherFromCoords', place);
-      })
-    }
-  },
-  computed: {
-    ...mapGetters('weather', [
-      'weather'
-    ]),
-    background() {
-      const { temperature, main } = this.weather;
-      if (temperature > 20 && main === 'clear') {
-        return 'warm';
-      }
-      return main;
+        store.dispatch("weather/setWeatherFromCoords", place);
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -61,7 +59,7 @@ $color-snow-1: rgb(223, 213, 204);
 $color-snow-2: rgb(144, 182, 218);
 
 @mixin background($color-1, $color-2) {
-  background: linear-gradient(to top, $color-1, $color-2)
+  background: linear-gradient(to top, $color-1, $color-2);
 }
 
 .main {

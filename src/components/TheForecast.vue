@@ -1,10 +1,10 @@
 <template>
   <div class="forecast-container -full-width -bottom">
     <div class="forecast">
-      <div 
-        class="forecast-day" 
-        v-for="{ day, weather, temperature, id } in forecasts" 
+      <div
+        v-for="{ day, weather, temperature, id } in forecasts"
         :key="id"
+        class="forecast-day"
       >
         <p class="forecast-day-header">{{ getDay(day) }}</p>
         <img :src="getIcon(weather)" />
@@ -15,26 +15,24 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { weekdays } from '../utils';
-import { icon } from '../utils/icons';
+import { mapGetters } from "vuex";
+import { weekdays } from "../utils";
+import { icon } from "../utils/icons";
 
 export default {
   name: "TheForecast",
   computed: {
-    ...mapGetters('weather', [
-      'forecasts'
-    ])
+    ...mapGetters("weather", ["forecasts"])
   },
   methods: {
     getDay(day) {
-      return day === 'NOW' ? day : weekdays[new Date(day).getDay()];
+      return day === "NOW" ? day : weekdays[new Date(day).getDay()];
     },
     getIcon(weather) {
       return icon[weather];
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -57,7 +55,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  opacity: .73;
+  opacity: 0.73;
 }
 
 .forecast-day img {
@@ -125,4 +123,3 @@ export default {
   }
 }
 </style>
-

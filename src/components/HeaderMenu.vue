@@ -1,47 +1,43 @@
 <template>
   <div class="menu container -right -text-center">
     <div class="menu-option">
-      <p>T. units: </p>
+      <p>T. units:</p>
       <div class="menu-option-units">
-        <div 
+        <div
           :class="[
-            'menu-option-unit', 
+            'menu-option-unit',
             { 'menu-option-unit--inactive': unit === 'Fahrenheit' }
-          ]" 
+          ]"
           @click="changeUnits('Celsius')"
         >
-          <p>C</p>  
+          <p>C</p>
         </div>
-        <div 
+        <div
           :class="[
-            'menu-option-unit', 
+            'menu-option-unit',
             { 'menu-option-unit--inactive': unit === 'Celsius' }
-          ]" 
+          ]"
           @click="changeUnits('Fahrenheit')"
         >
           <p>F</p>
         </div>
       </div>
     </div>
-  </diV>
+  </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "HeaderMenu",
   computed: {
-    ...mapState('weather', [
-      'unit'
-    ])
+    ...mapState("weather", ["unit"])
   },
   methods: {
-    ...mapMutations('weather', [
-      'changeUnits'
-    ])
+    ...mapMutations("weather", ["changeUnits"])
   }
-}
+};
 </script>
 
 <style lang="scss">

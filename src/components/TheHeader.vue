@@ -1,37 +1,33 @@
 <template>
-<div class="-full-width -top">
-  <div class="header">
-    <div class="header-icon" @click="toggleForm">
-      <img :src="add" />
+  <div class="-full-width -top">
+    <div class="header">
+      <div class="header-icon" @click="toggleForm">
+        <img :src="add" />
+      </div>
+      <div v-show="!formIsActive" class="header-location" @click="toggleList">
+        <p v-if="city">
+          {{ city.toUpperCase() }}
+          <span>{{ countryName().toUpperCase() }}</span>
+        </p>
+      </div>
+      <HeaderList v-show="listIsActive" :toggle-list="toggleList" />
+      <HeaderForm v-show="formIsActive" />
+      <div class="header-icon" @click="toggleMenu">
+        <img :src="hamburger" />
+      </div>
+      <HeaderMenu v-show="menuIsActive" />
     </div>
-    <div 
-      class="header-location" 
-      @click="toggleList"
-      v-show="!formIsActive"
-    >
-      <p v-if="city">
-        {{ city.toUpperCase() }}
-        <span>{{ countryName().toUpperCase() }}</span>
-      </p>
-    </div>
-    <HeaderList v-show="listIsActive" :toggleList="toggleList" />
-    <HeaderForm v-show="formIsActive" />
-    <div class="header-icon" @click="toggleMenu">
-      <img :src="hamburger" />
-    </div>
-    <HeaderMenu v-show="menuIsActive" />
   </div>
-</div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
-import { getCountry } from '../utils/country';
-import HeaderForm from './HeaderForm';
-import HeaderList from './HeaderList';
-import HeaderMenu from './HeaderMenu';
-import add from '../assets/icons/add.svg';
-import hamburger from '../assets/icons/hamburger.svg';
+import { mapState, mapGetters } from "vuex";
+import { getCountry } from "../utils/country";
+import HeaderForm from "./HeaderForm";
+import HeaderList from "./HeaderList";
+import HeaderMenu from "./HeaderMenu";
+import add from "../assets/icons/add.svg";
+import hamburger from "../assets/icons/hamburger.svg";
 
 export default {
   name: "TheHeader",
@@ -46,16 +42,11 @@ export default {
       hamburger,
       listIsActive: false,
       menuIsActive: false
-    }
+    };
   },
   computed: {
-    ...mapGetters('weather', [
-      'city',
-      'countryCode'
-    ]),
-    ...mapState('form', [
-      'formIsActive'
-    ])
+    ...mapGetters("weather", ["city", "countryCode"]),
+    ...mapState("form", ["formIsActive"])
   },
   methods: {
     countryName() {
@@ -68,11 +59,11 @@ export default {
       this.menuIsActive = !this.menuIsActive;
     },
     toggleForm() {
-      this.$store.commit('form/toggleForm');
-      this.$store.commit('form/setInput', true);
+      this.$store.commit("form/toggleForm");
+      this.$store.commit("form/setInput", true);
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -84,7 +75,8 @@ export default {
   align-items: center;
 }
 
-.header-location, .header-icon {
+.header-location,
+.header-icon {
   cursor: pointer;
 }
 
@@ -97,8 +89,9 @@ export default {
   width: 15px;
 }
 
-.header p span, .header li span {
-  opacity: .75;
+.header p span,
+.header li span {
+  opacity: 0.75;
 }
 
 @media (min-width: 768px) {
@@ -115,5 +108,3 @@ export default {
   }
 }
 </style>
-
-
