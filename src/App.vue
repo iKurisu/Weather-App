@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import TheHeader from "./components/TheHeader";
 import TheWeather from "./components/TheWeather";
 import TheForecast from "./components/TheForecast";
@@ -33,10 +33,13 @@ export default {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         const { coords: place } = position;
-        store.dispatch("weather/setWeatherFromCoords", place);
+        this.setWeatherFromCoords(place);
       });
     }
-  }
+  },
+  methods: mapActions({
+    setWeatherFromCoords: "weather/setWeatherFromCoords"
+  })
 };
 </script>
 
