@@ -23,9 +23,9 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 import { getCountry } from "../utils/country";
-import HeaderForm from "./HeaderForm";
-import HeaderList from "./HeaderList";
-import HeaderMenu from "./HeaderMenu";
+import HeaderForm from "./header/Form";
+import HeaderList from "./header/List";
+import HeaderMenu from "./header/Menu";
 import add from "../assets/icons/add.svg";
 import hamburger from "../assets/icons/hamburger.svg";
 
