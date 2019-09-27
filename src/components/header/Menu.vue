@@ -63,6 +63,10 @@ export default {
   padding: 2px 4px;
 }
 
+.menu-option-unit:last-child {
+  padding-right: 0;
+}
+
 .menu-option-unit.--inactive {
   opacity: 0.3;
 }
