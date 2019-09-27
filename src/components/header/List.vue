@@ -29,6 +29,7 @@ export default {
       setWeatherFromCity: "weather/setWeatherFromCity"
     }),
     setPlace(place) {
+      console.log(place);
       this.setWeatherFromCity(place);
       this.toggleList();
     }
@@ -39,6 +40,7 @@ export default {
 <style lang="scss">
 .header-list {
   max-height: 27vh;
+  z-index: 10;
   overflow-y: scroll;
 }
 
