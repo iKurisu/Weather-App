@@ -27,6 +27,8 @@ const getters = {
         description: currentWeather.weather[0].description,
         main: currentWeather.weather[0].main.toLowerCase()
       };
+    } else {
+      return {};
     }
   },
   forecasts({ currentWeather, forecasts, unit }) {
