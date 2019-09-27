@@ -17,7 +17,7 @@ export const forecastFormat = unit => forecast => ({
   id: forecast.dt
 });
 
-export const nextThreeDays = forecast => {
+export const nextFourDays = forecast => {
   const day = new Date(forecast.dt_txt).getDay();
   const today = new Date().getDay();
   const possibleDiffs = [1, 2, 3, 4, -3, -4, -5, -6];

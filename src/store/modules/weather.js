@@ -4,7 +4,7 @@ import {
   fetchWeatherByCity,
   fetchForecastByCity
 } from "../../api";
-import { getForecastAtNoon, forecastFormat, nextThreeDays } from "../../utils";
+import { getForecastAtNoon, forecastFormat, nextFourDays } from "../../utils";
 import * as convert from "../../utils/temperature";
 
 const state = {
@@ -31,7 +31,7 @@ const getters = {
   },
   forecasts({ currentWeather, forecasts, unit }) {
     if (currentWeather) {
-      return [currentWeather, ...forecasts.filter(nextThreeDays)].map(
+      return [currentWeather, ...forecasts.filter(nextFourDays)].map(
         forecastFormat(unit)
       );
     }
@@ -55,6 +55,7 @@ const mutations = {
 const setWeather = (getWeather, getForecast) => async ({ commit }, place) => {
   const currentWeather = await getWeather(place);
   const forecasts = await getForecast(place);
+
   commit("setCurrentWeather", currentWeather);
   commit("setForecasts", forecasts);
 };
