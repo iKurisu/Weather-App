@@ -29,11 +29,15 @@ export default {
       currentWeather: "weather/currentWeather"
     })
   },
+  watch: {
+    currentWeather() {
       const { temperature, main } = this.currentWeather;
+
       if (temperature > 20 && main === "clear") {
-        return "warm";
+        this.background = "warm";
+      } else {
+        this.background = main;
       }
-      return main;
     }
   },
   created() {
