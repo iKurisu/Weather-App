@@ -50,7 +50,7 @@ export default {
       countryCode: "weather/countryCode"
     }),
     ...mapState({
-      formIsActive: "form/formIsActive"
+      formIsActive: state => state.form.formIsActive
     })
   },
   methods: {

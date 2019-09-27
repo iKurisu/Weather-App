@@ -19,16 +19,25 @@ export default {
     TheWeather,
     TheForecast
   },
+  data() {
+    return {
+      background: ""
+    };
+  },
   computed: {
     ...mapGetters({
       currentWeather: "weather/currentWeather"
-    }),
-    background() {
+    })
+  },
+  watch: {
+    currentWeather() {
       const { temperature, main } = this.currentWeather;
+
       if (temperature > 20 && main === "clear") {
-        return "warm";
+        this.background = "warm";
+      } else {
+        this.background = main;
       }
-      return main;
     }
   },
   created() {
@@ -36,11 +45,14 @@ export default {
       navigator.geolocation.getCurrentPosition(position => {
         const { coords: place } = position;
         this.setWeatherFromCoords(place);
-      });
+      }, this.loadDefaultCity);
+    } else {
+      this.loadDefaultCity();
     }
   },
   methods: mapActions({
-    setWeatherFromCoords: "weather/setWeatherFromCoords"
+    setWeatherFromCoords: "weather/setWeatherFromCoords",
+    loadDefaultCity: "loadDefaultCity"
   })
 };
 </script>
