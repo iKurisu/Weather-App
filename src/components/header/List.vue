@@ -22,7 +22,7 @@ export default {
     }
   },
   computed: mapState({
-    places: "place/places"
+    places: state => state.place.places
   }),
   methods: {
     ...mapActions({
