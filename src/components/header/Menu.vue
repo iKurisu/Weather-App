@@ -45,6 +45,10 @@ export default {
   z-index: 10;
 }
 
+.menu.container {
+  width: 20vh;
+}
+
 .menu-option {
   padding: 6px 10px;
   display: flex;
