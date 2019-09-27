@@ -4,18 +4,12 @@
       <p>T. units:</p>
       <span class="menu-option-units">
         <span
-          :class="[
-            'menu-option-unit',
-            { 'menu-option-unit--inactive': unit === 'Fahrenheit' }
-          ]"
+          :class="['menu-option-unit', { '--inactive': unit === 'Fahrenheit' }]"
           @click="changeUnits('Celsius')"
           >C</span
         >
         <span
-          :class="[
-            'menu-option-unit',
-            { 'menu-option-unit--inactive': unit === 'Celsius' }
-          ]"
+          :class="['menu-option-unit', { '--inactive': unit === 'Celsius' }]"
           @click="changeUnits('Fahrenheit')"
           >F</span
         >
