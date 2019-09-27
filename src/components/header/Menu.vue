@@ -2,28 +2,20 @@
   <div class="menu container -right -text-center">
     <div class="menu-option">
       <p>T. units:</p>
-      <div class="menu-option-units">
-        <div
-          :class="[
-            'menu-option-unit',
-            { 'menu-option-unit--inactive': unit === 'Fahrenheit' }
-          ]"
+      <span class="menu-option-units">
+        <span
+          :class="['menu-option-unit', { '--inactive': unit === 'Fahrenheit' }]"
           @click="changeUnits('Celsius')"
+          >C</span
         >
-          <p>C</p>
-        </div>
-        <div
-          :class="[
-            'menu-option-unit',
-            { 'menu-option-unit--inactive': unit === 'Celsius' }
-          ]"
+        <span
+          :class="['menu-option-unit', { '--inactive': unit === 'Celsius' }]"
           @click="changeUnits('Fahrenheit')"
+          >F</span
         >
-          <p>F</p>
-        </div>
+      </span>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -32,7 +24,7 @@ import { mapState, mapMutations } from "vuex";
 export default {
   name: "HeaderMenu",
   computed: mapState({
-    unit: "weather/unit"
+    unit: state => state.weather.unit
   }),
   methods: mapMutations({
     changeUnits: "weather/changeUnits"
@@ -45,27 +37,37 @@ export default {
   z-index: 10;
 }
 
+.menu.container {
+  width: 17vh;
+}
+
 .menu-option {
   padding: 6px 10px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .menu-option p {
+  display: inline;
+}
+
+.menu-option p,
+.menu-option span {
   font-size: 14px;
 }
 
 .menu-option-units {
-  display: flex;
+  margin-left: 10px;
 }
 
 .menu-option-unit {
   cursor: pointer;
-  padding: 2px 10px;
+  padding: 2px 4px;
 }
 
-.menu-option-unit--inactive {
-  color: #a1a1a1;
+.menu-option-unit:last-child {
+  padding-right: 0;
+}
+
+.menu-option-unit.--inactive {
+  opacity: 0.3;
 }
 </style>
