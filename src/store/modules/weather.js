@@ -45,7 +45,7 @@ const mutations = {
     state.currentWeather = currentWeather.data;
   },
   setForecasts(state, forecasts) {
-    state.forecasts = getForecastAtNoon(forecasts);
+    state.forecasts = getForecastAtNoon(forecasts.data);
   },
   changeUnits(state, unit) {
     state.unit = unit;
