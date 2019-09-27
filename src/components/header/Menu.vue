@@ -66,7 +66,7 @@ export default {
 
 .menu-option-unit {
   cursor: pointer;
-  padding: 2px 10px;
+  padding: 2px 4px;
 }
 
 .menu-option-unit--inactive {
