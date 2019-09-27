@@ -20,7 +20,7 @@ export const forecastFormat = unit => forecast => ({
 export const nextThreeDays = forecast => {
   const day = new Date(forecast.dt_txt).getDay();
   const today = new Date().getDay();
-  const possibleDiffs = [1, 2, 3, 4, -3, -5, -6];
+  const possibleDiffs = [1, 2, 3, 4, -3, -4, -5, -6];
 
   if (possibleDiffs.includes(day - today)) return forecast;
 };
