@@ -63,7 +63,7 @@ export default {
   padding: 2px 4px;
 }
 
-.menu-option-unit--inactive {
-  color: #a1a1a1;
+.menu-option-unit.--inactive {
+  opacity: 0.3;
 }
 </style>
