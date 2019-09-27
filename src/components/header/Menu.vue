@@ -38,7 +38,7 @@ export default {
 }
 
 .menu.container {
-  width: 20vh;
+  width: 17vh;
 }
 
 .menu-option {
