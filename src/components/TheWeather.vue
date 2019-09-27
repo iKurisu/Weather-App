@@ -2,8 +2,7 @@
   <div class="weather-container">
     <div class="weather">
       <p class="weather-temperature">
-        {{ currentWeather.temperature }}
-        <span>º</span>
+        {{ currentWeather.temperature }}<span>º</span>
       </p>
       <p class="weather-description">
         {{ capitalize(currentWeather.description) }}
