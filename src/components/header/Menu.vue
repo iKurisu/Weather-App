@@ -2,28 +2,26 @@
   <div class="menu container -right -text-center">
     <div class="menu-option">
       <p>T. units:</p>
-      <div class="menu-option-units">
-        <div
+      <span class="menu-option-units">
+        <span
           :class="[
             'menu-option-unit',
             { 'menu-option-unit--inactive': unit === 'Fahrenheit' }
           ]"
           @click="changeUnits('Celsius')"
+          >C</span
         >
-          <p>C</p>
-        </div>
-        <div
+        <span
           :class="[
             'menu-option-unit',
             { 'menu-option-unit--inactive': unit === 'Celsius' }
           ]"
           @click="changeUnits('Fahrenheit')"
+          >F</span
         >
-          <p>F</p>
-        </div>
+      </span>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -51,17 +49,19 @@ export default {
 
 .menu-option {
   padding: 6px 10px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .menu-option p {
+  display: inline;
+}
+
+.menu-option p,
+.menu-option span {
   font-size: 14px;
 }
 
 .menu-option-units {
-  display: flex;
+  margin-left: 10px;
 }
 
 .menu-option-unit {
