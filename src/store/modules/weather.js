@@ -23,7 +23,7 @@ const getters = {
   currentWeather({ currentWeather, unit }) {
     if (currentWeather) {
       return {
-        temperature: convert[`to${unit}`](currentWeather.main.temp_map),
+        temperature: convert[`to${unit}`](currentWeather.main.temp_max),
         description: currentWeather.weather[0].description,
         main: currentWeather.weather[0].main.toLowerCase()
       };
