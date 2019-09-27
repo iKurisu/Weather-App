@@ -30,7 +30,7 @@ import { mapState, mapMutations } from "vuex";
 export default {
   name: "HeaderMenu",
   computed: mapState({
-    unit: "weather/unit"
+    unit: state => state.weather.unit
   }),
   methods: mapMutations({
     changeUnits: "weather/changeUnits"
