@@ -55,7 +55,8 @@ const mutations = {
 const setWeather = (getWeather, getForecast) => async ({ commit }, place) => {
   const currentWeather = await getWeather(place);
   const forecasts = await getForecast(place);
-  commit("setWeather", { currentWeather, forecasts });
+  commit("setCurrentWeather", currentWeather);
+  commit("setForecasts", forecasts);
 };
 
 const actions = {
