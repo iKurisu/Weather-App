@@ -22,5 +22,5 @@ export const nextThreeDays = forecast => {
   const today = new Date().getDay();
   const possibleDiffs = [1, 2, 3, 4, -3, -4, -5, -6];
 
-  if (possibleDiffs.includes(day - today)) return forecast;
+  return possibleDiffs.includes(day - today);
 };
