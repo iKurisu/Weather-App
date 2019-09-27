@@ -36,11 +36,14 @@ export default {
       navigator.geolocation.getCurrentPosition(position => {
         const { coords: place } = position;
         this.setWeatherFromCoords(place);
-      });
+      }, this.loadDefaultCity);
+    } else {
+      this.loadDefaultCity();
     }
   },
   methods: mapActions({
-    setWeatherFromCoords: "weather/setWeatherFromCoords"
+    setWeatherFromCoords: "weather/setWeatherFromCoords",
+    loadDefaultCity: "loadDefaultCity"
   })
 };
 </script>
