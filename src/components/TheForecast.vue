@@ -37,7 +37,7 @@ export default {
 
 <style lang="scss">
 .forecast-container {
-  background: #fff5;
+  background: #fff;
   height: 26%;
   max-height: 40vw;
 }
@@ -47,7 +47,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  margin: 0 10%;
+  margin: 0 9vw;
 }
 
 .forecast-day {
