@@ -36,6 +36,8 @@ export default {
 <style lang="scss">
 .weather-container {
   width: 100%;
+  height: 90vh;
+  max-height: calc(90vh - 40vw);
   position: absolute;
   top: 10vh;
 }
@@ -44,7 +46,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 7vh;
+  margin-top: 14vh;
 }
 
 .weather p {
@@ -70,7 +72,7 @@ export default {
 .weather-description {
   font-size: 26px;
   opacity: 0.87;
-  margin-top: 6vh;
+  margin-top: 6vw;
   letter-spacing: 0.9px;
 }
 </style>
