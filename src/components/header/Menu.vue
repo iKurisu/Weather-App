@@ -71,4 +71,10 @@ export default {
 .menu-option-unit.--inactive {
   opacity: 0.3;
 }
+
+@media (min-width: 768px) {
+  .menu.container {
+    width: 25vw;
+  }
+}
 </style>
