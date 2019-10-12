@@ -73,3 +73,9 @@ input {
     width: 34vw;
   }
 }
+
+@media (min-width: 768px) and (orientation: landscape) {
+  .container {
+    width: 30vw;
+  }
+}

@@ -77,4 +77,10 @@ export default {
     width: 25vw;
   }
 }
+
+@media (min-width: 768px) and (orientation: landscape) {
+  .menu.container {
+    width: 19vw;
+  }
+}
 </style>
