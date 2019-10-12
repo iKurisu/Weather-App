@@ -75,4 +75,14 @@ export default {
   margin-top: 6vw;
   letter-spacing: 0.9px;
 }
+
+@media (min-width: 768px) {
+  .weather {
+    margin-top: 18vh;
+  }
+
+  .weather-description {
+    margin-top: 2vw;
+  }
+}
 </style>
