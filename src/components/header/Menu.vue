@@ -14,8 +14,8 @@
           >F</span
         >
       </span>
-      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -61,7 +61,7 @@ export default {
 
 .menu-option-unit {
   cursor: pointer;
-  padding: 2px 4px;
+  padding: 2px 6px;
 }
 
 .menu-option-unit:last-child {
