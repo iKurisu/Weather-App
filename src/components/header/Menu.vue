@@ -83,4 +83,10 @@ export default {
     width: 19vw;
   }
 }
+
+@media (min-width: 1366px) {
+  .menu.container {
+    width: 185px;
+  }
+}
 </style>

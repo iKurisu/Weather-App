@@ -79,3 +79,8 @@ input {
     width: 30vw;
   }
 }
+@media (min-width: 1366px) {
+  .container {
+    width: 260px;
+  }
+}
