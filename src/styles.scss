@@ -79,8 +79,15 @@ input {
     width: 30vw;
   }
 }
+
+::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
 @media (min-width: 1366px) {
   .container {
+    scrollbar-width: none;
     width: 260px;
   }
 }
