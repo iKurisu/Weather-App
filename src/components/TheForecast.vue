@@ -26,7 +26,9 @@ export default {
   }),
   methods: {
     getDay(day) {
-      return day === "NOW" ? day : weekdays[new Date(day).getDay()];
+      return day === "NOW"
+        ? day
+        : weekdays[new Date(day.replace(/ /, "T")).getDay()];
     },
     getIcon(weather) {
       return icon[weather];
