@@ -32,9 +32,9 @@ input {
 
 .container {
   background: #fff;
-  width: 27vh;
-  max-width: 46vw;
-  top: 10vh;
+  width: 47vw;
+  max-width: 74vh;
+  top: 8vh;
   border-radius: 5px;
   box-shadow: 0 2px 7px .2px rgba(0, 0, 0, .15);
 }
@@ -66,4 +66,28 @@ input {
 .-bottom {
   position: absolute;
   bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 34vw;
+  }
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+  .container {
+    width: 30vw;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
+@media (min-width: 1366px) {
+  .container {
+    scrollbar-width: none;
+    width: 260px;
+  }
 }

@@ -3,12 +3,11 @@ export default {
   state: {
     formIsActive: false,
     inputIsValid: false,
-    value: ''
+    value: ""
   },
   mutations: {
     toggleForm(state) {
       state.formIsActive = !state.formIsActive;
-      state.value = '';
     },
     setInput(state, bool) {
       state.inputIsValid = bool;
@@ -19,20 +18,25 @@ export default {
   },
   actions: {
     submitForm({ state, commit, dispatch }) {
-      const [ city, code ] = state.value.split(', ');
+      const [city, code] = state.value.split(", ");
 
-      commit('setInput', !city || !code ? false : true);
-      
+      commit("setInput", !city || !code ? false : true);
+
       if (state.inputIsValid) {
-        dispatch('weather/setWeatherFromCity', { city, code }, { root: true })
-          .then(_ => {
-            commit('place/addPlace', { city, code }, { root: true });
-            commit('toggleForm');
+        dispatch("weather/setWeatherFromCity", { city, code }, { root: true })
+          .then(() => {
+            commit("place/addPlace", { city, code }, { root: true });
+            commit("toggleForm");
           })
-          .catch(_ => {
-            commit('setInput', false);
+          .catch(() => {
+            commit("setInput", false);
           });
-      };
+      }
+    },
+    toggleForm({ commit }) {
+      commit("toggleForm");
+      commit("updateValue", "");
+      commit("setInput", true);
     }
   }
 };

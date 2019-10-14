@@ -1,12 +1,8 @@
 <template>
   <div class="header-list container -center -text-center">
     <ul v-if="places.length > 0">
-      <li 
-        v-for="{place, id} in places" 
-        :key="id" 
-        @click="setPlace(place)"
-      >
-        {{ place.city.toUpperCase() }} 
+      <li v-for="{ place, id } in places" :key="id" @click="setPlace(place)">
+        {{ place.city.toUpperCase() }}
         <span>{{ place.code.toUpperCase() }}</span>
       </li>
     </ul>
@@ -15,7 +11,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "HeaderList",
@@ -25,23 +21,26 @@ export default {
       required: true
     }
   },
-  computed: {
-    ...mapState('place', [
-      'places'
-    ])
-  },
+  computed: mapState({
+    places: state => state.place.places
+  }),
   methods: {
+    ...mapActions({
+      setWeatherFromCity: "weather/setWeatherFromCity"
+    }),
     setPlace(place) {
-      this.$store.dispatch('weather/setWeatherFromCity', place)
+      console.log(place);
+      this.setWeatherFromCity(place);
       this.toggleList();
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
 .header-list {
   max-height: 27vh;
+  z-index: 10;
   overflow-y: scroll;
 }
 
@@ -61,7 +60,8 @@ export default {
 }
 
 .header-list {
-  p, li {
+  p,
+  li {
     font-size: 14px;
     padding: 6px 0;
   }

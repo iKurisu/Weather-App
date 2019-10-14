@@ -7,11 +7,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import store from './store';
-import TheHeader from './components/TheHeader';
-import TheWeather from './components/TheWeather';
-import TheForecast from './components/TheForecast';
+import { mapGetters, mapActions } from "vuex";
+import TheHeader from "./components/TheHeader";
+import TheWeather from "./components/TheWeather";
+import TheForecast from "./components/TheForecast";
 
 export default {
   name: "App",
@@ -20,28 +19,42 @@ export default {
     TheWeather,
     TheForecast
   },
-  store,
+  data() {
+    return {
+      background: ""
+    };
+  },
+  computed: {
+    ...mapGetters({
+      currentWeather: "weather/currentWeather"
+    })
+  },
+  watch: {
+    currentWeather() {
+      const { temperature, main } = this.currentWeather;
+
+      if (temperature > 20 && main === "clear") {
+        this.background = "warm";
+      } else {
+        this.background = main;
+      }
+    }
+  },
   created() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         const { coords: place } = position;
-        store.dispatch('weather/setWeatherFromCoords', place);
-      })
+        this.setWeatherFromCoords(place);
+      }, this.loadDefaultCity);
+    } else {
+      this.loadDefaultCity();
     }
   },
-  computed: {
-    ...mapGetters('weather', [
-      'weather'
-    ]),
-    background() {
-      const { temperature, main } = this.weather;
-      if (temperature > 20 && main === 'clear') {
-        return 'warm';
-      }
-      return main;
-    }
-  }
-}
+  methods: mapActions({
+    setWeatherFromCoords: "weather/setWeatherFromCoords",
+    loadDefaultCity: "loadDefaultCity"
+  })
+};
 </script>
 
 <style lang="scss">
@@ -61,11 +74,7 @@ $color-snow-1: rgb(223, 213, 204);
 $color-snow-2: rgb(144, 182, 218);
 
 @mixin background($color-1, $color-2) {
-  background: linear-gradient(to top, $color-1, $color-2)
-}
-
-.main {
-  height: 100vh;
+  background: linear-gradient(to top, $color-1, $color-2);
 }
 
 .warm {
@@ -86,5 +95,24 @@ $color-snow-2: rgb(144, 182, 218);
 
 .clouds {
   @include background($color-clouds-1, $color-clouds-2);
+}
+
+.main {
+  height: calc(100vh - 20vw);
+  min-height: 67vh;
+}
+
+@media (min-width: 1000px) {
+  .main {
+    height: calc(100vh - 16vw);
+    min-height: 70vh;
+  }
+}
+
+@media (min-width: 1366px) {
+  .main {
+    height: calc(100vh - 14vw);
+    min-height: 76vh;
+  }
 }
 </style>
