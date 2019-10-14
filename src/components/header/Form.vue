@@ -54,4 +54,10 @@ export default {
     font-size: 14px;
   }
 }
+
+@media (min-width: 1366px) {
+  .header input {
+    width: 260px;
+  }
+}
 </style>
