@@ -41,6 +41,7 @@ export default {
 .header input {
   max-width: 19vh;
   padding: 7px 25px;
+  border-radius: 5px;
 }
 
 .header-form--error {
