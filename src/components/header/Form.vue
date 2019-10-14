@@ -41,9 +41,24 @@ export default {
 .header input {
   max-width: 19vh;
   padding: 7px 25px;
+  border-radius: 5px;
 }
 
 .header-form--error {
   background: #c86564d2;
+}
+
+@media (min-width: 768px) {
+  .header input {
+    width: 30vw;
+    max-width: 40vh;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .header input {
+    width: 260px;
+  }
 }
 </style>

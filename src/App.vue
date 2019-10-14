@@ -77,10 +77,6 @@ $color-snow-2: rgb(144, 182, 218);
   background: linear-gradient(to top, $color-1, $color-2);
 }
 
-.main {
-  height: 100vh;
-}
-
 .warm {
   @include background($color-warm-1, $color-warm-2);
 }
@@ -99,5 +95,24 @@ $color-snow-2: rgb(144, 182, 218);
 
 .clouds {
   @include background($color-clouds-1, $color-clouds-2);
+}
+
+.main {
+  height: calc(100vh - 20vw);
+  min-height: 67vh;
+}
+
+@media (min-width: 1000px) {
+  .main {
+    height: calc(100vh - 16vw);
+    min-height: 70vh;
+  }
+}
+
+@media (min-width: 1366px) {
+  .main {
+    height: calc(100vh - 14vw);
+    min-height: 76vh;
+  }
 }
 </style>

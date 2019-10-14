@@ -14,8 +14,8 @@
           >F</span
         >
       </span>
-      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -38,7 +38,8 @@ export default {
 }
 
 .menu.container {
-  width: 17vh;
+  width: 40vw;
+  // width: 17vh;
 }
 
 .menu-option {
@@ -60,7 +61,7 @@ export default {
 
 .menu-option-unit {
   cursor: pointer;
-  padding: 2px 4px;
+  padding: 2px 6px;
 }
 
 .menu-option-unit:last-child {
@@ -69,5 +70,23 @@ export default {
 
 .menu-option-unit.--inactive {
   opacity: 0.3;
+}
+
+@media (min-width: 768px) {
+  .menu.container {
+    width: 25vw;
+  }
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+  .menu.container {
+    width: 19vw;
+  }
+}
+
+@media (min-width: 1366px) {
+  .menu.container {
+    width: 185px;
+  }
 }
 </style>

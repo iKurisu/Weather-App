@@ -26,7 +26,9 @@ export default {
   }),
   methods: {
     getDay(day) {
-      return day === "NOW" ? day : weekdays[new Date(day).getDay()];
+      return day === "NOW"
+        ? day
+        : weekdays[new Date(day.replace(/ /, "T")).getDay()];
     },
     getIcon(weather) {
       return icon[weather];
@@ -37,7 +39,7 @@ export default {
 
 <style lang="scss">
 .forecast-container {
-  background: #fff5;
+  background: #fff;
   height: 26%;
   max-height: 40vw;
 }
@@ -47,7 +49,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  margin: 0 10%;
+  margin: 0 9vw;
 }
 
 .forecast-day {
